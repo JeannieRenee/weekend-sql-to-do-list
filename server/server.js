@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const listRouter = require('./routes/router');
-const app = express();
+const listRouter = require('./routes/list.router.js');
 
+const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/list', listRouter);

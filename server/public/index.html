@@ -8,13 +8,33 @@
 
     <!-- Scripts -->
     <script src="jquery.js"></script>
-    <script src="script.js"></script>
+    <script src="client.js"></script>
 
     <!-- Style -->
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
-    <h1>Test</h1>
+    <div>
+        <h1>honeydo</h1>
+    </div>
+
+    <form>
+        <label for="taskInput">Task</label><br>
+        <input type="text" id="taskInput">
+
+        <button type="button" id="submit">add task</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Status</th>
+            </tr>
+        <thead>
+        <tbody id="taskOut">
+        </tbody>
+      </table>
 </body>
 </html>
