@@ -19,11 +19,11 @@ function handleSubmit(){
     addTask(task);
 }
 
-function addTask(taskToAdd){
+function addTask(task){
     $.ajax({
         type: 'POST',
         url: '/list',
-        data: taskToAdd,
+        data: task,
         }).then(function(response) {
           console.log('Response from server.', response);
           refreshTasks();
@@ -35,13 +35,13 @@ function addTask(taskToAdd){
 
 function refreshTasks() {
     $.ajax({
-      type: 'GET',
-      url: '/list'
+        type: 'GET',
+        url: '/list'
     }).then(function(response) {
-      console.log(response);
-      renderTasks(response);
+        console.log(response);
+        renderTasks(response);
     }).catch(function(error){
-      console.log('error in GET', error);
+        console.log('error in GET', error);
     });
 }
 
