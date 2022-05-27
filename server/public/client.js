@@ -3,19 +3,19 @@ $(document).ready(onReady);
 function onReady() {
     console.log ('linked jq'); 
     clickHandlers();
+    refreshTasks()
 }
 
 function clickHandlers() {
     $('#submit').on('click', handleSubmit);
     $(document).on('click', '.delete', handleDelete);
     $(document).on('click', '.done', handleDone);
-    refreshTasks()
 }
 
 function handleSubmit(){
     console.log('Submit button clicked.');
     let task = {};
-    task = $('#taskInput').val();
+    task.task = $('#taskInput').val();
     addTask(task);
 }
 
@@ -26,6 +26,7 @@ function addTask(taskToAdd){
         data: taskToAdd,
         }).then(function(response) {
           console.log('Response from server.', response);
+          refreshTasks();
         }).catch(function(error) {
           console.log('Error in POST', error)
           alert('Unable to add task at this time. Please try again later.');
@@ -47,15 +48,29 @@ function refreshTasks() {
 function handleDone(){
     console.log('Done button clicked.');
     // mark as done
+    //update true in database
     // delete check button 
 }
 function handleDelete(){
     console.log('Delete button clicked.');
-    //delete tr
+    const taskId = $(this).parents('tr').data('task-id');
+    console.log('in handleDelete()', taskId);
+  $.ajax({
+      method: 'DELETE',
+      url: `/list/${taskId}`,       
+  })
+      .then(() => {
+        refreshTasks();
+        console.log('DELETE success');
+      })
+      .catch((err) => {
+          alert('Failed to delete.');
+          console.log('DELETE failed:', err);
+      });
 }
 
 function renderTasks(tasks){
-    // $('#taskOut').empty();
+    $('#taskOut').empty();
 
     for(let i = 0; i < tasks.length; i += 1) {
         let task = tasks[i];
@@ -64,7 +79,6 @@ function renderTasks(tasks){
       <tr data-task-id="${task.id}">
         <td>${task.task}</td>
         <td class=read>
-          ${task.isDone}
         <button type="button" class="done">✅</button>
         <button type="button" class="delete">❌</button>
         </td>
