@@ -26,35 +26,36 @@ router.post('/',  (req, res) => {
   let queryText = `INSERT INTO "tasks" ("task")
                      VALUES ($1);`;
   pool.query(queryText, [newTask.task])
-      .then(result => {
-        res.sendStatus(201);
-      })
-      .catch(error => {
-        console.log(`Error adding new task`, error);
-        res.sendStatus(500);
-      });
-  });
+    .then(result => {
+       res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(`Error adding new task`, error);
+      res.sendStatus(500);
+    });
+});
   
-  router.delete('/:id', (req, res) => {
-    let taskId = req.params.id;
-    console.log('Delete request for id', taskId);
+router.delete('/:id', (req, res) => {
+  let taskId = req.params.id;
+  console.log('Delete request for id', taskId);
   
-    let sqlQuery = `
+  let sqlQuery = `
     DELETE FROM "tasks" 
     WHERE "id" = $1;
-    `;
-    const sqlParams = [
-      taskId,             
-    ];
-    pool.query(sqlQuery, sqlParams)
-      .then(() => {
-        console.log('task deleted');
-        res.sendStatus(204);
-      })
-      .catch( (error) => {
-        console.log(`Error making database query`, error);
-        res.sendStatus(500); 
-      })
-  })
+  `;
+  
+  const sqlParams = [
+    taskId,             
+  ];
+  pool.query(sqlQuery, sqlParams)
+    .then(() => {
+      console.log('task deleted');
+      res.sendStatus(204);
+    })
+    .catch( (error) => {
+      console.log(`Error making database query`, error);
+      res.sendStatus(500); 
+    })
+})
 
 module.exports = router;
