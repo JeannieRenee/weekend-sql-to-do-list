@@ -58,4 +58,37 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+// PUT CLIENT SIDE 
+router.put('/:id', (req, res) => {
+  let taskId = req.params.id;
+  console.log('put request for id', taskId);
+
+  let sqlQuery = `
+  UPDATE "tasks" 
+  SET "isDone" = $2
+  WHERE "id" = $1;
+  `;
+
+  const sqlParams = [
+    taskId, 
+    true            
+  ];
+
+  pool.query(sqlQuery, sqlParams)
+    .then(() => {
+      console.log('task status updated');
+      res.sendStatus(204);
+    })
+    .catch( (error) => {
+      console.log(`Error making database query isDone`, error);
+      res.sendStatus(500); 
+    })
+})
+
+
+
+
+
+
+
 module.exports = router;

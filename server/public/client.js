@@ -45,12 +45,6 @@ function refreshTasks() {
     });
 }
 
-function handleDone(){
-    console.log('Done button clicked.');
-    // mark as done
-    //update true in database
-    // delete check button 
-}
 function handleDelete(){
     console.log('Delete button clicked.');
     const taskId = $(this).parents('tr').data('task-id');
@@ -86,3 +80,23 @@ function renderTasks(tasks){
     `);
   }
 }
+
+
+// PUT CLIENT SIDE 
+function handleDone() {
+    console.log('Done button clicked.');
+    const taskId = $(this).parents('tr').data('task-id');
+    console.log('in updateisDone()', taskId);
+  
+    $.ajax({
+      method: 'PUT',
+      url: `/list/${taskId}`,       
+    })
+      .then(() => {
+        refreshTasks();
+        console.log('PUT /tasks success');
+      })
+        .catch((err) => {
+            console.log('PUT /tasks failed:', err);
+        });
+  };
