@@ -96,7 +96,8 @@ function renderTasks(tasks){
               </label>
             </td>
             <td>${task.task}</td>
-            <td class=read>
+            <td>Complete</td>
+            <td>
             <button type="button" class="buttons" id="delete">Delete</button>
             </td>
           </tr>
@@ -112,7 +113,7 @@ function renderTasks(tasks){
               </label>
             </td>
             <td>${task.task}</td>
-            <td class=read>
+            <td>
             <button type="button" class="buttons" id="delete">Delete</button>
             </td>
           </tr>
@@ -124,7 +125,7 @@ function renderTasks(tasks){
 function handleDone() {
   const taskId = $(this).parents('tr').data('task-id');
   console.log('in updateisDone()', taskId);
-
+  refreshTasks()
     if ($(this).is(':checked')) {
       console.log("Checkbox is checked..");
       $.ajax({
@@ -132,7 +133,7 @@ function handleDone() {
         url: `/list/${taskId}`,       
       })
         .then(() => {
-          // refreshTasks();
+          refreshTasks();
           console.log('PUT /tasks success');
         })
           .catch((err) => {
