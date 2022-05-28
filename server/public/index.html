@@ -12,29 +12,31 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
     <div>
-        <h1>honeydo</h1>
+        <h1>To Do 🪄</h1>
     </div>
 
-    <form>
-        <label for="taskInput">Task</label><br>
-        <input type="text" id="taskInput" required>
+    <form class="taskInput">
+        <input type="text" id="taskInput" placeholder="Laundry, Yard Work, etc">
 
-        <button type="button" id="submit">add task</button>
+        <button type="button" class="buttons "id="submit">Add</button>
     </form>
 
     <table>
+        <thead id="tableHead">
+
         <thead>
-            <tr>
-                <th>Task</th>
-                <th></th>
-            </tr>
-        <thead>
+
         <tbody id="taskOut">
         </tbody>
+
       </table>
 </body>
 </html>
