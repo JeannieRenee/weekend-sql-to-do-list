@@ -8,8 +8,8 @@ function onReady() {
 
 function clickHandlers() {
     $('#submit').on('click', handleSubmit);
-    $(document).on('click', '.delete', handleDelete);
-    $(document).on('click', '.done', handleDone);
+    $(document).on('click', '#delete', handleDelete);
+    $(document).on('click', '.checkbox', handleDone);
 }
 
 function handleSubmit(){
@@ -49,54 +49,98 @@ function handleDelete(){
     console.log('Delete button clicked.');
     const taskId = $(this).parents('tr').data('task-id');
     console.log('in handleDelete()', taskId);
-  $.ajax({
-      method: 'DELETE',
-      url: `/list/${taskId}`,       
-  })
-      .then(() => {
-        refreshTasks();
-        console.log('DELETE success');
-      })
-      .catch((err) => {
-          alert('Failed to delete.');
-          console.log('DELETE failed:', err);
-      });
+    //this is sweet alert, gods its cumbersome.
+    Swal.fire({
+      title: 'Are you sure you want to delete this task?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#5A87DF',
+      cancelButtonColor: 'red',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your task has been deleted.',
+          'success'
+        )
+        $.ajax({
+          method: 'DELETE',
+          url: `/list/${taskId}`,       
+        })
+          .then(() => {
+            refreshTasks();
+            console.log('DELETE success');
+          })
+            .catch((err) => {
+              alert('Failed to delete.');
+              console.log('DELETE failed:', err);
+            });
+      }
+    });
 }
 
 function renderTasks(tasks){
-    $('#taskOut').empty();
-
+  $('#taskOut').empty();
     for(let i = 0; i < tasks.length; i += 1) {
-        let task = tasks[i];
-
-    $('#taskOut').append(`
-      <tr data-task-id="${task.id}">
-        <td>${task.task}</td>
-        <td class=read>
-        <button type="button" class="done">✅</button>
-        <button type="button" class="delete">❌</button>
-        </td>
-      </tr>
-    `);
-  }
+      let task = tasks[i];
+      if (task.isDone === true){
+        console.log('task.isDone === true');
+        $('#taskOut').append(`
+          <tr class="datarows" data-task-id="${task.id}">
+            <td>
+              <label class="container">
+                <input type="checkbox" class="checkbox" checked="checked">
+                <span class="checkmark"></span>
+              </label>
+            </td>
+            <td>${task.task}</td>
+            <td>Complete</td>
+            <td>
+            <button type="button" class="buttons" id="delete">Delete</button>
+            </td>
+          </tr>
+        `);
+      } else if (task.isDone === false) {
+        console.log('task.isDone === false');
+        $('#taskOut').append(`
+          <tr class="datarows" data-task-id="${task.id}">
+            <td>
+              <label class="container">
+                <input type="checkbox" class="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </td>
+            <td>${task.task}</td>
+            <td>
+            <button type="button" class="buttons" id="delete">Delete</button>
+            </td>
+          </tr>
+        `);
+      }
+    }
 }
 
-
-// PUT CLIENT SIDE 
 function handleDone() {
-    console.log('Done button clicked.');
-    const taskId = $(this).parents('tr').data('task-id');
-    console.log('in updateisDone()', taskId);
-  
-    $.ajax({
-      method: 'PUT',
-      url: `/list/${taskId}`,       
-    })
-      .then(() => {
-        refreshTasks();
-        console.log('PUT /tasks success');
+  const taskId = $(this).parents('tr').data('task-id');
+  console.log('in updateisDone()', taskId);
+  refreshTasks()
+    if ($(this).is(':checked')) {
+      console.log("Checkbox is checked..");
+      $.ajax({
+        method: 'PUT',
+        url: `/list/${taskId}`,       
       })
-        .catch((err) => {
+        .then(() => {
+          refreshTasks();
+          console.log('PUT /tasks success');
+        })
+          .catch((err) => {
             console.log('PUT /tasks failed:', err);
-        });
-  };
+          });
+    } else {
+      console.log("Checkbox is unchecked..")
+    }
+}
+  
