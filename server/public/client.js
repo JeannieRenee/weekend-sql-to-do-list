@@ -96,9 +96,9 @@ function renderTasks(tasks){
               </label>
             </td>
             <td>${task.task}</td>
-            <td>Complete</td>
+            <td class="complete">✨Completed✨</td>
             <td>
-            <button type="button" class="buttons" id="delete">Delete</button>
+              <button type="button" class="buttons" id="delete">Delete</button>
             </td>
           </tr>
         `);
@@ -114,6 +114,8 @@ function renderTasks(tasks){
             </td>
             <td>${task.task}</td>
             <td>
+            </td>
+            <td>
             <button type="button" class="buttons" id="delete">Delete</button>
             </td>
           </tr>
@@ -125,7 +127,6 @@ function renderTasks(tasks){
 function handleDone() {
   const taskId = $(this).parents('tr').data('task-id');
   console.log('in updateisDone()', taskId);
-  refreshTasks()
     if ($(this).is(':checked')) {
       console.log("Checkbox is checked..");
       $.ajax({
@@ -140,7 +141,8 @@ function handleDone() {
             console.log('PUT /tasks failed:', err);
           });
     } else {
-      console.log("Checkbox is unchecked..")
+      console.log("Checkbox is unchecked..");
+        //method to revert back to isDone false
     }
 }
   

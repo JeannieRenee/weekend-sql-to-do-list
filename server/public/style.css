@@ -1,12 +1,18 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
+html {
+    height: 100%;
+}
+
 body {
     position: relative;
     width: 100%;
     height: 100%;
-    margin: 5em;
+    margin: 0;
     background: linear-gradient(153.35deg, #EDEAFF 23.39%, #A4FFAD 99.79%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #delete {
@@ -26,6 +32,7 @@ input {
     font-size: 16px;
     padding-left: 2%;
     border-radius: 2px;
+    border: none;
 }
 
 #submit {
@@ -34,12 +41,12 @@ input {
     border-radius: 2px;
     color: white;
     padding: 15px 32px;
-    height: 45px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
+    margin-left: 1%;
 }
 
 table {
@@ -49,22 +56,15 @@ th, td {
     padding: 10px;
 }
 
-tr {
-    border: 1px solid black;
-}
 
 /* The container */
 .container {
-    display: block;
+    /* display: block; */
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
   }
   
   /* Hide the browser's default checkbox */
@@ -83,7 +83,8 @@ tr {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #ffffff;
+    background-color: #cedfff;
+    border: #cedfff;
     border-radius: 2px;
   }
   
@@ -94,8 +95,7 @@ tr {
   
   /* When the checkbox is checked, add a blue background */
   .container input:checked ~ .checkmark {
-    background-color: #5A87DF
-    ;
+    background-color: #5A87DF;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -122,5 +122,14 @@ tr {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+.complete {
+    color: #5A87DF;
+    border-style: solid;
+    border-radius: 2px;
+    background-color: #d0e0ff;
+    text-align: center;
+}
+
 
 
