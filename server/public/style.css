@@ -15,6 +15,40 @@ body {
     background-attachment: fixed;
 }
 
+#content {
+    margin: 5em;
+}
+
+input {
+    width: 70%;
+    height: 45px;
+    font-size: 16px;
+    padding-left: 2%;
+    border-radius: 5px;
+    border: solid;
+    border-color: #ccc;
+}
+
+#submit {
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 1%;
+}
+
+.complete {
+    color: #5A87DF;
+    background-color: #d0e0ff;
+    text-align: center;
+}
+
 #delete {
     background: none;
     text-decoration: underline;
@@ -26,36 +60,32 @@ body {
     cursor: pointer;
 }
 
-input {
-    width: 50%;
-    height: 45px;
-    font-size: 16px;
-    padding-left: 2%;
-    border-radius: 2px;
-    border: none;
-}
-
-#submit {
-    background-color: black;
-    border: none;
-    border-radius: 2px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 1%;
-}
-
 table {
-    width: 75%;
-}
-th, td {
-    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1em;
 }
 
+th, td {
+    padding: 20px;
+}
+
+tr { 
+    border: solid; 
+    background-color: white;
+    box-shadow: 0px 2px 2px 0px #ccc;
+}
+
+td:first-child,
+th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+td:last-child,
+th:last-child {
+  border-radius: 0 10px 10px 0;
+}
 
 /* The container */
 .container {
@@ -84,8 +114,10 @@ th, td {
     height: 25px;
     width: 25px;
     background-color: #cedfff;
-    border: #cedfff;
-    border-radius: 2px;
+    border-style: solid;
+    border-color: #5A87DF;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 0px #ccc;
   }
   
   /* On mouse-over, add a grey background color */
@@ -122,14 +154,4 @@ th, td {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-
-.complete {
-    color: #5A87DF;
-    border-style: solid;
-    border-radius: 2px;
-    background-color: #d0e0ff;
-    text-align: center;
-}
-
-
 

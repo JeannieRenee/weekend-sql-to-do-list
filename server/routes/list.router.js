@@ -65,13 +65,12 @@ router.put('/:id', (req, res) => {
 
   let sqlQuery = `
   UPDATE "tasks" 
-  SET "isDone" = $2
+  SET "isDone" = NOT "isDone"
   WHERE "id" = $1;
   `;
 
   const sqlParams = [
     taskId, 
-    true            
   ];
 
   pool.query(sqlQuery, sqlParams)
@@ -84,6 +83,5 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500); 
     })
 })
-
 
 module.exports = router;
