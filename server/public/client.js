@@ -51,20 +51,20 @@ function handleDelete(){
     console.log('in handleDelete()', taskId);
     //this is sweet alert, gods its cumbersome.
     Swal.fire({
-      title: 'Are you sure you want to delete this task?',
-      text: "You won't be able to revert this!",
+      text: "Are you sure you want to delete this task?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#5A87DF',
       cancelButtonColor: 'red',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Nevermind!'
+      }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Deleted!',
-          'Your task has been deleted.',
-          'success'
-        )
+          "Poof!",
+          "Your task has been deleted.",{
+          buttonColor: '#5A87DF',
+          });
         $.ajax({
           method: 'DELETE',
           url: `/list/${taskId}`,       
@@ -88,7 +88,7 @@ function renderTasks(tasks){
       if (task.isDone === true){
         console.log('task.isDone === true');
         $('#taskOut').append(`
-          <tr class="datarows" data-task-id="${task.id}">
+          <tr class="datarows" data-task-id="${task.id}" style="background-color:#d0e0ff;">
             <td>
               <label class="container">
                 <input type="checkbox" class="checkbox" checked="checked">
@@ -127,22 +127,15 @@ function renderTasks(tasks){
 function handleDone() {
   const taskId = $(this).parents('tr').data('task-id');
   console.log('in updateisDone()', taskId);
-    if ($(this).is(':checked')) {
-      console.log("Checkbox is checked..");
-      $.ajax({
-        method: 'PUT',
-        url: `/list/${taskId}`,       
+    $.ajax({
+      method: 'PUT',
+      url: `/list/${taskId}`,       
+    })
+      .then(() => {
+        refreshTasks();
+        console.log('PUT /tasks success');
       })
-        .then(() => {
-          refreshTasks();
-          console.log('PUT /tasks success');
-        })
-          .catch((err) => {
-            console.log('PUT /tasks failed:', err);
-          });
-    } else {
-      console.log("Checkbox is unchecked..");
-        //method to revert back to isDone false
-    }
+        .catch((err) => {
+          console.log('PUT /tasks failed:', err);
+        });
 }
-  
