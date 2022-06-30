@@ -14,7 +14,7 @@ Once user input is submitted using a submit button, the app collects the informa
 
 ![Alt Text](list.gif)
 </br>
-To see the fully functional site, click [here]().
+To see the fully functional site, click [here](https://infinite-headland-49768.herokuapp.com/).
 
 
 
