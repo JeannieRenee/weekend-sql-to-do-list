@@ -3,9 +3,10 @@
 ## Description
 
 _Duration: 6 hours_
-This was one of the first applications I made, only 8 weeks into learning how to code.
 
-I was asked to create an application that allows a user to create a task, add it to a list, update task status to finished and delete task items. 
+This was one of the first applications I made, 9 weeks into learning how to code and three days of learning SQL.
+
+I was asked to create an application that allows a user to create a task, add it to a list, update task status to finished and delete tasks. 
 
 Once user input is submitted using a submit button, the app collects the information and stores it to a database. Information is then refreshed and the added task is displayed on the webpage. 
 
