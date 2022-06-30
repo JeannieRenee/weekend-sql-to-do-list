@@ -13,6 +13,10 @@ Once user input is submitted using a submit button, the app collects the informa
 ## Demo
 
 ![Alt Text](list.gif)
+</br>
+To see the fully functional site, click [here]().
+
+
 
 ## Built With
 
