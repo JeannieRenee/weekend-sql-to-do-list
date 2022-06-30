@@ -13,6 +13,6 @@ VALUES
 	('Sacrifice a goat'),
 	('Have existential breakdown'),
 	('Ponder the absurdity of everything'),
-	('Call mom');
+	('Call mom'
 	
 SELECT * FROM "tasks";
