@@ -9,9 +9,9 @@ I was asked to create an application that allows a user to create a task, add it
 
 Once user input is submitted using a submit button, the app collects the information and stores it to a database. Information is then refreshed and the added task is displayed on the webpage. 
 
-## Screen Shot
+## Demo
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+![Alt Text](list.gif)
 
 ## Built With
 
