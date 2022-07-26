@@ -40,6 +40,7 @@ Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped m
 ## Support
 If you have suggestions or issues (or compliments 😉), please get in touch. 
 <br/>
+<br/>
 [![Jeannie](https://img.shields.io/badge/-jeannie.dev-yellowgreen?style=for-the-badge)](https://www.jeannie.dev) 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/JeannieBranstrator) 
 [![Email](https://img.shields.io/badge/-gmail-orange?style=for-the-badge&logo=gmail)](mailto:jmbranstrator@gmail.com) 
